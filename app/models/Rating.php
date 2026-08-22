@@ -1,6 +1,5 @@
 <?php
 
-namespace Model;
 
 class Rating extends \DB\Cortex {
    
@@ -25,11 +24,13 @@ class Rating extends \DB\Cortex {
             ],
 
 
-        ],
+        ];
 
-
-    $db = 'DB',
-    $table = 'ratings',
+protected 
+    $db = 'DB';
+protected 
+    $table = 'ratings';
+protected 
     $primary = 'id';    // name of the primary key (auto-created), default: id
 
 

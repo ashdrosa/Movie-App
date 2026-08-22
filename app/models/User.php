@@ -1,6 +1,5 @@
 <?php
 
-namespace Model;
 
 class User extends \DB\Cortex {
    
@@ -38,11 +37,13 @@ class User extends \DB\Cortex {
                 'nullable' => false, 
             ],
 
-        ],
+        ];
 
-
-    $db = 'DB',
-    $table = 'users',
+protected 
+    $db = 'DB';
+protected 
+    $table = 'users';
+protected 
     $primary = 'id';    // name of the primary key (auto-created), default: id
 
 

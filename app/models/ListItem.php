@@ -1,6 +1,5 @@
 <?php
 
-namespace Model;
 
     class ListItem extends \DB\Cortex {
 
@@ -18,5 +17,13 @@ namespace Model;
                         'belongs-to-one' => '\MovieList'
                     ],
 
-                ];
-    }
+                 ];
+
+protected 
+$db = 'DB';
+protected 
+$table = 'list_items';
+protected 
+$primary = 'id';    // name of the primary key (auto-created), default: id
+
+}
