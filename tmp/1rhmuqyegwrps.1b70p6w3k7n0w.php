@@ -13,9 +13,11 @@
 <div id="input name">
     <input type="text" id="movie-search-txt"/> 
     <button type="click" id="btn-submit-search"> SUBMIT </button>
-
 </div>
 
+<div id="srch-results">
+
+</div>
 
 
 
@@ -25,7 +27,7 @@
     var submitBtn = document.getElementById("btn-submit-search");
     var srchBox = document.getElementById("movie-search-txt");
 
-    submitBtn.addEventListener('click', () => {
+    submitBtn.addEventListener('click', async () => {
         console.log('You CLicked the Butt');
 
         var srchWord = srchBox.value;
@@ -36,16 +38,34 @@
         method: 'GET',
         headers: {
             accept: 'application/json',
-            Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxOWI2MGQ4ZmMyYzQ0NTlkOTVkZGNmN2QyNzViNGExOSIsIm5iZiI6MTc4ODcxNTM0NS4wNDQ5OTk4LCJzdWIiOiI2YTlkYTE1MTRlMDM3NWQwZTMxNDNiYzUiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.kQBWipobj_odwvqnx8CIVpQqgqp3XclxBmiFvdgvRSI'
+            Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxOWI2MGQ4ZmMyYzQ0NTlkOTVkZGNmN2QyNzViNGExOSIsIm5iZiI6MTc4ODcxNTM0NS4wNDQ5OTk4LCJzdWIiOiI2YTlkYTE1MTRlMDM3NWQwZTMxNDNiYzUiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.kQBWipobj_odwvqnx8CIVpQqgqp3XclxBmiFvdgvRSI '
         }
         };
 
-        // console.log('https://api.themoviedb.org/3/search/movie?query='+srchWord+'&include_adult=false&language=en-US&page=1');
-
-
-        fetch ('https://api.themoviedb.org/3/search/movie?query=' + srchWord + '&include_adult=false&language=en-US&page=1', options)
+       await fetch ('https://api.themoviedb.org/3/search/movie?query=' + srchWord + '&include_adult=false&language=en-US&page=1', options)
         .then(res => res.json())
-        .then(res => console.log(res))
+        .then(res => {console.log(res)
+           
+            const searchResults = document.getElementById('srch-results');
+           
+                    searchResults.innerHTML = '';
+
+            
+            var movieResults = res.results;
+                movieResults.forEach( movie => {
+                    console.log(movie.title);
+                  
+
+            var newHeads = document.createElement('h6');
+                newHeads.textContent = movie.title;
+            var movieImg = document.createElement('img');
+                movieImg.src='https://image.tmdb.org/t/p/w200' + movie.poster_path;
+                
+                searchResults.appendChild(newHeads);
+                searchResults.appendChild(movieImg);
+            });
+ 
+                            })
         .catch(err => console.error(err));
 
             });
