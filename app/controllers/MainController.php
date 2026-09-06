@@ -3,7 +3,7 @@
 
 class MainController {
     function dashboard() {
-        echo "THAT DASH BE HITTIN";
+        echo \Template::instance()->render('home.html');
 }
 
 
