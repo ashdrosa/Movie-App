@@ -19,10 +19,13 @@
 
 </div>
 
-
-
     
 </body>
+
+<style> 
+    h6 {color: red}    
+</style>
+
 <script>
     var submitBtn = document.getElementById("btn-submit-search");
     var srchBox = document.getElementById("movie-search-txt");
@@ -38,7 +41,7 @@
         method: 'GET',
         headers: {
             accept: 'application/json',
-            Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxOWI2MGQ4ZmMyYzQ0NTlkOTVkZGNmN2QyNzViNGExOSIsIm5iZiI6MTc4ODcxNTM0NS4wNDQ5OTk4LCJzdWIiOiI2YTlkYTE1MTRlMDM3NWQwZTMxNDNiYzUiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.kQBWipobj_odwvqnx8CIVpQqgqp3XclxBmiFvdgvRSI '
+            Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxOWI2MGQ4ZmMyYzQ0NTlkOTVkZGNmN2QyNzViNGExOSIsIm5iZiI6MTc4ODcxNTM0NS4wNDQ5OTk4LCJzdWIiOiI2YTlkYTE1MTRlMDM3NWQwZTMxNDNiYzUiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.kQBWipobj_odwvqnx8CIVpQqgqp3XclxBmiFvdgvRSI'
         }
         };
 
