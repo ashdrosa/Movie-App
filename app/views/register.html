@@ -6,31 +6,57 @@
     <title>Document</title>
   </head>
   <body>
-    <form>
+    <form id="register-form">
       <label>First Name:</label>
-      <input type="text" id="first-name" placeholder="First Name" />
+      <input
+        type="text"
+        id="first-name"
+        placeholder="First Name"
+        name="first_name"
+      />
       <br />
       <label>Birthday:</label>
-      <input type="date" id="DOB" />
+      <input type="date" id="DOB" name="DOB" />
       <br />
       <label>Email:</label>
-      <input type="email" id="email" placeholder="email" />
+      <input type="email" id="email" placeholder="email" name="user_email" />
       <br />
       <label>Username:</label>
-      <input type="text" id="username" placeholder="username" />
+      <input
+        type="text"
+        id="username"
+        placeholder="username"
+        name="user_name"
+      />
       <br />
       <label>Password:</label>
-      <input type="password" id="pass" placeholder="password" />
+      <input
+        type="password"
+        id="pass"
+        placeholder="password"
+        name="user_password"
+      />
       <br />
       <br />
 
-      <button id="register">Submit</button>
+      <button type="click" id="register">Submit</button>
     </form>
   </body>
   <script>
-    let submit_btn = document.getElementById("register");
-    submit_btn.addEventListener("click", () => {
+    let submit_Btn = document.getElementById("register");
+    submit_Btn.addEventListener("click", async (e) => {
+      e.preventDefault();
       console.log("clicked");
+
+      const register_Form = document.getElementById("register-form");
+      const formData = new FormData(register_Form);
+
+      const response = await fetch("/create/user", {
+        method: "POST",
+        body: formData,
+      });
+
+      const result = await response.json();
     });
   </script>
 </html>

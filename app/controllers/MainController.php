@@ -29,12 +29,21 @@ class MainController {
         $user->user_password=$f3->get('POST.user_password');
 
 
-          if(  $f3->save()) {
+          if(  $user->save()) {
             echo http_response_code(200);
-            echo "Saving the data";
+              echo json_encode([
+                'success'=> true,
+                'message' => 'Saved to database'
+            ]);
+          
           } else {
             echo http_response_code(500);
-            echo "Not Saved in the database";
+             echo json_encode([
+                'success'=> false,
+                'message' => 'Not Saved to database'
+            ]);
+          
+          
           }
             
     }
