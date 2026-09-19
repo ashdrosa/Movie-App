@@ -6,7 +6,7 @@
     <title>Document</title>
   </head>
   <body>
-    <div>
+    <form>
       <label>First Name:</label>
       <input type="text" id="first-name" placeholder="First Name" />
       <br />
@@ -25,6 +25,12 @@
       <br />
 
       <button id="register">Submit</button>
-    </div>
+    </form>
   </body>
+  <script>
+    let submit_btn = document.getElementById("register");
+    submit_btn.addEventListener("click", () => {
+      console.log("clicked");
+    });
+  </script>
 </html>
