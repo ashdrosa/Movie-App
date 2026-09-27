@@ -1,0 +1,25 @@
+.nav-bar {
+  background-color: rgb(99, 98, 98);
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding: 0.5rem;
+  color: white;
+}
+
+.user-info {
+  text-decoration: none;
+  a:visited {
+    text-decoration: none;
+    color: white;
+  }
+  a:link {
+    text-decoration: none;
+    color: white;
+  }
+
+  a:hover {
+    color: rgb(34, 255, 237);
+    transition: all 0.05s ease-in-out;
+  }
+}

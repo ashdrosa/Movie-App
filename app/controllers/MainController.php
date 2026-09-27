@@ -47,4 +47,38 @@ class MainController {
           }
             
     }
+
+    function login_user(){
+       $f3= \Base::instance();
+          $user= new User;
+            $username = $f3->get('POST.user_name');
+            $user_password = $f3->get('POST.user_password');
+
+         $user->load(['user_name = ?', $username]);
+            if( $user->valid()) {
+                  if ($user->user_password == $user_password) {
+                          echo http_response_code(200);
+                          echo json_encode([
+                            'success'=> true,
+                            'message' => 'YOU LOGGED IT DAWG'
+                        ]);  
+                  } else {
+                     echo http_response_code(401);
+                    echo json_encode([
+                  'success'=> false,
+                  'message' => 'PURGED, WHO ARE YOU?! WRONG PASSWORD'
+                    ]);
+                  }
+            } else {
+              echo http_response_code(404);
+                    echo json_encode([
+                  'success'=> false,
+                  'message' => 'YOU ARE NON-EXISTENT! MAKE AN ACCOUNT BREH!'
+                    ]);
+            }
+
+
+
+
+    }
  }
