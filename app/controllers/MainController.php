@@ -18,7 +18,7 @@ class MainController {
     function create_user(){
         $f3= \Base::instance();
         $user= new User;
-        $post= $f3->get('POST');
+       
 
 
 // Grabbing the user information from the front-end and sending it to the user object-database
