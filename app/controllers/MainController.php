@@ -2,7 +2,7 @@
 
 
 class MainController {
-    function dashboard() {
+    function homepage() {
         echo \Template::instance()->render('home.html');
 
     }
@@ -55,30 +55,39 @@ class MainController {
             $user_password = $f3->get('POST.user_password');
 
          $user->load(['user_name = ?', $username]);
-            if( $user->valid()) {
+            
+         if( $user->valid()) {
                   if ($user->user_password == $user_password) {
-                          echo http_response_code(200);
+                      $f3->set('SESSION.user_id', $user->_id);
+                       $f3->set('SESSION.user_email', $user->user_email);
+                        $f3->set('SESSION.user_name', $user->user_name);
+                           http_response_code(200);
                           echo json_encode([
                             'success'=> true,
-                            'message' => 'YOU LOGGED IT DAWG'
+                            'message' => 'YOU LOGGED IN DAWG'
                         ]);  
                   } else {
-                     echo http_response_code(401);
+                     http_response_code(401);
                     echo json_encode([
                   'success'=> false,
                   'message' => 'PURGED, WHO ARE YOU?! WRONG PASSWORD'
                     ]);
                   }
             } else {
-              echo http_response_code(404);
+               http_response_code(404);
                     echo json_encode([
                   'success'=> false,
                   'message' => 'YOU ARE NON-EXISTENT! MAKE AN ACCOUNT BREH!'
                     ]);
             }
 
-
-
-
     }
+
+    function logout_user(){
+       $f3= \Base::instance();
+        $f3->clear('SESSION');
+        $f3->reroute("/");
+    }
+
+  
  }

@@ -23,3 +23,9 @@
     transition: all 0.05s ease-in-out;
   }
 }
+
+.title-header {
+  font-family: "Special Gothic Expanded One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}

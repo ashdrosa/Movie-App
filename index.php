@@ -2,6 +2,7 @@
 
 require_once ( 'vendor/autoload.php' );
 $f3 = \Base::instance();
+error_reporting(E_ALL & ~E_DEPRECATED & ~E_NOTICE & ~E_USER_NOTICE);
 $f3->config("app/config/config.ini");
 $f3->config("app/config/routes.ini");
 
