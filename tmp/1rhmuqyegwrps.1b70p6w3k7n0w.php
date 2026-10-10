@@ -17,17 +17,43 @@
   <div class="title-header">
     <h1>SEARCH FOR A MOVIE OR SHOW</h1>
   </div>
-  <div id="input name">
-    <input type="text" id="movie-search-txt" />
-    <button type="click" id="btn-submit-search">SUBMIT</button>
-  </div>
+  <div class="search-section">
+    <div id="input name">
+      <input type="text" id="movie-search-txt" />
+      <button type="click" id="btn-submit-search">SUBMIT</button>
+    </div>
 
-  <div id="srch-results"></div>
+    <div id="srch-results"></div>
+  </div>
+  <div class="side-bar">
+    <h2>MY LISTS</h2>
+  </div>
 </body>
 
 <style>
   h6 {
     color: red;
+    text-align: center;
+  }
+
+  .search-section {
+    width: 70%;
+    height: 100vh;
+    float: left;
+  }
+
+  #srch-results {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+  }
+
+  .side-bar {
+    width: 30%;
+    height: 100vh;
+    float: right;
+    background-color: #b1bdff;
   }
 </style>
 
@@ -67,14 +93,17 @@
         var movieResults = res.results;
         movieResults.forEach((movie) => {
           console.log(movie.title);
+          let movieCard = document.createElement("div");
+          movieCard.className = "movie-card";
 
-          var newHeads = document.createElement("h6");
-          newHeads.textContent = movie.title;
+          var movieTitle = document.createElement("h6");
+          movieTitle.textContent = movie.title;
           var movieImg = document.createElement("img");
           movieImg.src = "https://image.tmdb.org/t/p/w200" + movie.poster_path;
 
-          searchResults.appendChild(newHeads);
-          searchResults.appendChild(movieImg);
+          movieCard.appendChild(movieImg);
+          movieCard.appendChild(movieTitle);
+          searchResults.appendChild(movieCard);
         });
       })
       .catch((err) => console.error(err));
