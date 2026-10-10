@@ -58,7 +58,7 @@ class MainController {
             
          if( $user->valid()) {
                   if ($user->user_password == $user_password) {
-                      $f3->set('SESSION.user_id', $user->_id);
+                      $f3->set('SESSION.user_id', $user->id);
                        $f3->set('SESSION.user_email', $user->user_email);
                         $f3->set('SESSION.user_name', $user->user_name);
                            http_response_code(200);

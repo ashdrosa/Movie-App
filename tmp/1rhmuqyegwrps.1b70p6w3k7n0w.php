@@ -27,6 +27,17 @@
   </div>
   <div class="side-bar">
     <h2>MY LISTS</h2>
+    <button id="btn-create-movie-list">+</button>
+    <form id="create-movie-list-form">
+      <input
+        name="list_name"
+        type="text"
+        id="movie-list-name"
+        placeholder="Enter list name"
+      />
+      <button type="click" id="btn-submit-movie-list">Create</button>
+    </form>
+    <div id="movie-lists"></div>
   </div>
 </body>
 
@@ -54,6 +65,10 @@
     height: 100vh;
     float: right;
     background-color: #b1bdff;
+  }
+
+  #create-movie-list-form {
+    display: none;
   }
 </style>
 
@@ -107,6 +122,34 @@
         });
       })
       .catch((err) => console.error(err));
+  });
+
+  let createMovieListBtn = document.getElementById("btn-create-movie-list");
+  let createMovieListForm = document.getElementById("create-movie-list-form");
+  let submitMovieListBtn = document.getElementById("btn-submit-movie-list");
+  let movieListNameInput = document.getElementById("movie-list-name");
+
+  // createMovieListForm.style.display = "none";
+
+  createMovieListBtn.addEventListener("click", () => {
+    createMovieListForm.style.display = "block";
+  });
+
+  submitMovieListBtn.addEventListener("click", async (e) => {
+    e.preventDefault();
+    console.log("clicked create User Movie List");
+    console.log(movieListNameInput.value);
+    const response = await fetch("/create/movie/list", {
+      method: "POST",
+      body: new FormData(createMovieListForm),
+    });
+
+    const result = await response.json();
+    console.log(result.success);
+    console.log(result.message);
+    if (result.success == true) {
+      // window.location.href = "/";
+    }
   });
 </script>
 

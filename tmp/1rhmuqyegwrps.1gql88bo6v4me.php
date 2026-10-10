@@ -40,5 +40,8 @@
       window.location.href = "/";
     }
   });
+
+
+
 </script>
 <?php echo $this->render('footer.html',NULL,get_defined_vars(),0); ?>
