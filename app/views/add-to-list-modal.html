@@ -1,0 +1,39 @@
+<div class="modal" tabindex="-1" id="add-to-list-modal" data-movie-id="">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add To List</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <p>Add to List:</p>
+
+        <check if="{{isset(@SESSION.user_id) && @movieLists != NULL}}">
+          <true>
+            <select>
+              <repeat group="{{@movieLists}}" value="{{@list}}">
+                <option class="movie-list-name">
+                  {{@list.list_name ?? ""}}
+                </option>
+              </repeat>
+            </select>
+          </true>
+          <false>
+            <p>No List Found, Create your list now!</p>
+          </false>
+        </check>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

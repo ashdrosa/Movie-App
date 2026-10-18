@@ -56,6 +56,7 @@
       </ul>
     </div>
   </div>
+  <include href="add-to-list-modal.html" />
 </body>
 
 <style>
@@ -86,6 +87,11 @@
 
   #create-movie-list-form {
     display: none;
+  }
+
+  .add-to-list-btn {
+    font-size: 15px;
+    display: flex;
   }
 </style>
 
@@ -132,9 +138,22 @@
           movieTitle.textContent = movie.title;
           var movieImg = document.createElement("img");
           movieImg.src = "https://image.tmdb.org/t/p/w200" + movie.poster_path;
+          var addToListBtn = document.createElement("button");
+          addToListBtn.className = "add-to-list-btn";
+          addToListBtn.textContent = "+";
+          addToListBtn.setAttribute("data-bs-target", "#add-to-list-modal");
+          addToListBtn.setAttribute("data-bs-toggle", "modal");
+
+          addToListBtn.addEventListener("click", async (e) => {
+            e.preventDefault();
+            console.log(
+              "Clicked add to list Btn - this movie is in your list now!",
+            );
+          });
 
           movieCard.appendChild(movieImg);
           movieCard.appendChild(movieTitle);
+          movieCard.appendChild(addToListBtn);
           searchResults.appendChild(movieCard);
         });
       })
