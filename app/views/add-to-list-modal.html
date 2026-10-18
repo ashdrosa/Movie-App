@@ -1,4 +1,4 @@
-<div class="modal" tabindex="-1" id="add-to-list-modal" data-movie-id="">
+<div class="modal" tabindex="-1" id="add-to-list-modal">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -15,13 +15,16 @@
 
         <check if="{{isset(@SESSION.user_id) && @movieLists != NULL}}">
           <true>
-            <select>
-              <repeat group="{{@movieLists}}" value="{{@list}}">
-                <option class="movie-list-name">
-                  {{@list.list_name ?? ""}}
-                </option>
-              </repeat>
-            </select>
+            <form id="add-to-list-form">
+              <select name="movie_list" id="add-to-list-form-selection">
+                <repeat group="{{@movieLists}}" value="{{@list}}">
+                  <option class="movie-list-name" value="{{@list.id}}">
+                    {{@list.list_name ?? ""}}
+                  </option>
+                </repeat>
+              </select>
+              <input name="movie_id" type="number" hidden id="movie-id-input"  />
+            </form>
           </true>
           <false>
             <p>No List Found, Create your list now!</p>
@@ -32,7 +35,13 @@
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
           Close
         </button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button
+          type="button"
+          class="btn btn-primary"
+          id="add-to-list-submit-btn"
+        >
+          Add
+        </button>
       </div>
     </div>
   </div>

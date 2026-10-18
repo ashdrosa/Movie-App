@@ -122,13 +122,14 @@
     )
       .then((res) => res.json())
       .then((res) => {
-        console.log(res);
+        //console.log(res);
 
         const searchResults = document.getElementById("srch-results");
 
         searchResults.innerHTML = "";
 
         var movieResults = res.results;
+
         movieResults.forEach((movie) => {
           console.log(movie.title);
           let movieCard = document.createElement("div");
@@ -136,8 +137,10 @@
 
           var movieTitle = document.createElement("h6");
           movieTitle.textContent = movie.title;
+
           var movieImg = document.createElement("img");
           movieImg.src = "https://image.tmdb.org/t/p/w200" + movie.poster_path;
+
           var addToListBtn = document.createElement("button");
           addToListBtn.className = "add-to-list-btn";
           addToListBtn.textContent = "+";
@@ -149,6 +152,9 @@
             console.log(
               "Clicked add to list Btn - this movie is in your list now!",
             );
+            var addToListModal = document.getElementById("add-to-list-modal");
+            var formMovieIdInput = document.getElementById("movie-id-input");
+            formMovieIdInput.value = movie.id;
           });
 
           movieCard.appendChild(movieImg);
@@ -178,6 +184,31 @@
     const response = await fetch("/create/movie/list", {
       method: "POST",
       body: new FormData(createMovieListForm),
+    });
+
+    const result = await response.json();
+    console.log(result.success);
+    console.log(result.message);
+    if (result.success == true) {
+      // window.location.href = "/";
+    }
+  });
+
+  let addToListSubmitBtn = document.getElementById("add-to-list-submit-btn");
+
+  addToListSubmitBtn.addEventListener("click", async (e) => {
+    e.preventDefault();
+    let addToListForm = document.getElementById("add-to-list-form");
+    let formSelection = document.getElementById("add-to-list-form-selection");
+    let selectedList = formSelection.value;
+    let selectedListTitle =
+      formSelection.options[formSelection.selectedIndex].textContent;
+    console.log("Added to list:" + selectedListTitle);
+
+    //Fetch Request // URL PARAM
+    const response = await fetch("/list/" + selectedList + "/add/movie", {
+      method: "POST",
+      body: new FormData(addToListForm),
     });
 
     const result = await response.json();
