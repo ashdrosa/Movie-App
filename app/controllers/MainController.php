@@ -1,10 +1,16 @@
 <?php
 
 
+
 class MainController {
     function homepage() {
-        echo \Template::instance()->render('home.html');
+        $f3 = \Base::instance();
+        $movieList = new MovieList();
+        $f3->set('movieLists', $movieList->find([
+          'list_owner = ?', $f3->get('SESSION.user_id')
+        ]));
 
+        echo \Template::instance()->render('home.html');
     }
 
     function login() {

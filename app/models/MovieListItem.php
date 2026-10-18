@@ -1,7 +1,7 @@
 <?php
 
 
-    class ListItem extends \DB\Cortex {
+    class MovieListItem extends \DB\Cortex {
 
             protected   
                 $fieldConf = [
@@ -22,8 +22,8 @@
 protected 
 $db = 'DB';
 protected 
-$table = 'list_items';
+$table = 'movie_list_items';
 protected 
 $primary = 'id';    // name of the primary key (auto-created), default: id
 
-}
+   }

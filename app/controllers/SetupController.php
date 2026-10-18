@@ -8,7 +8,7 @@ class SetupController {
         Review::setup();
         Rating::setup();
         MovieList::setup();
-        ListItem::setup();
+        MovieListItem::setup();
 
 
 
